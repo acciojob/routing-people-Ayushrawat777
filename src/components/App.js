@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter , Routes, Route, useParams} from 'react-router-dom';
 import Home from './Home';
-import UserDetails from './UserDetail'
+import UserDetails from './UserDetail';
 import users from './users';
 
 const App = () => {
