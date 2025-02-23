@@ -1,19 +1,28 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import UserList from "./UserList";
-import UserDetails from "./UserDetails";
-import "./../styles/App.css";
+import React from 'react';
+import { BrowserRouter , Routes, Route, useParams} from 'react-router-dom';
+import Home from './Home';
+import UserDetails from './UserDetail';
+import users from './users';
+
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <div>
-        <Switch>
-          <Route exact path="/" component={UserList} />
-          <Route path="/user/:id" component={UserDetails} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route
+            path="/users/:id"
+            element={<UserDetailsWrapper />}
+          />
+        </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
+};
+const UserDetailsWrapper = (props) => {
+  const { id } = useParams();
+  const user = users.find(user => user.id === parseInt(id));
+  return user ? <UserDetails user={user} /> : <div>User not found</div>;
 };
 
 export default App;
